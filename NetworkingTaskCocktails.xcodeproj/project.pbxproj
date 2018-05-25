@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		E64FDA0320B7D59700BAD95A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64FDA0220B7D59700BAD95A /* AppDelegate.swift */; };
-		E64FDA0520B7D59700BAD95A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64FDA0420B7D59700BAD95A /* ViewController.swift */; };
 		E64FDA0820B7D59700BAD95A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64FDA0620B7D59700BAD95A /* Main.storyboard */; };
 		E64FDA0A20B7D59900BAD95A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E64FDA0920B7D59900BAD95A /* Assets.xcassets */; };
 		E64FDA0D20B7D59900BAD95A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64FDA0B20B7D59900BAD95A /* LaunchScreen.storyboard */; };
+		E64FDA1B20B7DB7100BAD95A /* CocktailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64FDA1A20B7DB7100BAD95A /* CocktailTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E64FD9FF20B7D59700BAD95A /* NetworkingTaskCocktails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkingTaskCocktails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64FDA0220B7D59700BAD95A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E64FDA0420B7D59700BAD95A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E64FDA0720B7D59700BAD95A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E64FDA0920B7D59900BAD95A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E64FDA0C20B7D59900BAD95A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E64FDA0E20B7D59900BAD95A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E64FDA1A20B7DB7100BAD95A /* CocktailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				E64FDA0220B7D59700BAD95A /* AppDelegate.swift */,
-				E64FDA0420B7D59700BAD95A /* ViewController.swift */,
+				E64FDA1A20B7DB7100BAD95A /* CocktailTVC.swift */,
 				E64FDA0620B7D59700BAD95A /* Main.storyboard */,
 				E64FDA0920B7D59900BAD95A /* Assets.xcassets */,
 				E64FDA0B20B7D59900BAD95A /* LaunchScreen.storyboard */,
@@ -135,8 +135,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E64FDA0520B7D59700BAD95A /* ViewController.swift in Sources */,
 				E64FDA0320B7D59700BAD95A /* AppDelegate.swift in Sources */,
+				E64FDA1B20B7DB7100BAD95A /* CocktailTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
