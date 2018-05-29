@@ -9,13 +9,22 @@
 import UIKit
 
 class CocktailTVC: UITableViewController {
-    var cocktails = Array<String>()
+    
+    var cocktails: [String] = []
     
     func getCocktailData(urlString: String) {
         let url = URL(string: urlString)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            DispatchQueue.main.async(execute: {
-                self.fillCocktailTable(cocktailData: data!)
+                DispatchQueue.main.async(execute: {
+                    guard error == nil else{
+                        print("Error in retrieving data \(error?.localizedDescription ?? "ERROR")")
+                        return
+                    }
+                    guard data != nil else{
+                        print("No data returned")
+                        return
+                    }
+                    self.fillCocktailTable(cocktailData: data!)
             })
         }
         task.resume()
@@ -23,18 +32,23 @@ class CocktailTVC: UITableViewController {
     
     func fillCocktailTable(cocktailData: Data) {
         do {
-            let json = try JSONSerialization.jsonObject(with: cocktailData, options: []) as! Dictionary<String, AnyObject>
-            if let drinks = json["drinks"] as?  [Dictionary<String, String>]{
+            let json = try JSONSerialization.jsonObject(with: cocktailData, options: []) as! [String: AnyObject]
+            if let drinks = json["drinks"] as?  [[String: String]]{
                 for i in drinks
                 {
                     if let cocktailName = i["strDrink"] {
                         cocktails.append(cocktailName)
                     }
+                    else{
+                        cocktails.append("Unable to parse data. Try again.")
+                        break
+                    }
                 }
             }
         } catch {
-            print("Error fetching data")
+            cocktails.append("Unable to parse data. Try again.")
         }
+        
         print("In fill method: \(cocktails.count)")
         tableView.reloadData()
     }
