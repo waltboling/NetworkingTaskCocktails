@@ -15,16 +15,13 @@ class CocktailTVC: UITableViewController {
     func getCocktailData(urlString: String) {
         let url = URL(string: urlString)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-                DispatchQueue.main.async(execute: {
-                    guard error == nil else{
-                        print("Error in retrieving data \(error?.localizedDescription ?? "ERROR")")
-                        return
-                    }
-                    guard data != nil else{
-                        print("No data returned")
-                        return
-                    }
-                    self.fillCocktailTable(cocktailData: data!)
+            DispatchQueue.main.async(execute: {
+                guard let data = data else {
+                    let message = error?.localizedDescription ?? "Something went wrong"
+                    self.showAlert(title: "Sorry", message: message, buttonTitle: "OK")
+                    return
+                }
+                self.fillCocktailTable(cocktailData: data)
             })
         }
         task.resume()
@@ -33,24 +30,33 @@ class CocktailTVC: UITableViewController {
     func fillCocktailTable(cocktailData: Data) {
         do {
             let json = try JSONSerialization.jsonObject(with: cocktailData, options: []) as! [String: AnyObject]
-            if let drinks = json["drinks"] as?  [[String: String]]{
+            if let drinks = json["drinks"] as?  [[String: String]] {
                 for i in drinks
                 {
                     if let cocktailName = i["strDrink"] {
                         cocktails.append(cocktailName)
-                    }
-                    else{
-                        cocktails.append("Unable to parse data. Try again.")
-                        break
+                    } else {
+                        showAlert(title: "Unable to parse data", message: "", buttonTitle: "OK")
                     }
                 }
+            } else {
+                showAlert(title: "Unable to parse data", message: "", buttonTitle: "OK")
             }
         } catch {
-            cocktails.append("Unable to parse data. Try again.")
+            showAlert(title: "Unable to parse data", message: "", buttonTitle: "OK")
         }
         
         print("In fill method: \(cocktails.count)")
         tableView.reloadData()
+    }
+    
+    func showAlert(title: String, message: String, buttonTitle: String) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        controller.addAction(okAction)
+        DispatchQueue.main.async {
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {
